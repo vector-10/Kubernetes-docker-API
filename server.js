@@ -135,19 +135,17 @@ app.delete("/api/user/:user_id", async (req, res) => {
 //CRUD OPERATIONS END FOR PERSON RESOURCE
 
 //CONNECT TO MONGODB DATABASE
-const connectDB = (url) => {
-  mongoose
-    .connect(url, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    })
-    .then(() => {
-      console.log(`Successfully connected to mongoDB database`);
-    })
-    .catch(() => {
-      console.error(`Not connected to mongoDB database`, error);
-    });
-};
+const connectDB = async() => {
+ try {
+  await mongoose.connect( {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  console.log(`Successfully connected to mongoDB database`);
+ } catch (error) {
+  console.error(`Not connected to mongoDB database`, error);
+ }
+}
 
 const PORT = 4000 || process.env.PORT;
 
