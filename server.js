@@ -8,6 +8,11 @@ const mongoose = require("mongoose");
 app.use(bodyParser.json());
 
 //CRUD OPERATIONS FOR PERSON RESOURCE
+app.get("/", (req, res) => {
+  res.json({
+    message: "Hello from server"
+  })
+})
 
 app.post("/api/user", async (req, res) => {
   try {
@@ -137,7 +142,7 @@ app.delete("/api/user/:user_id", async (req, res) => {
 //CONNECT TO MONGODB DATABASE
 const connectDB = async() => {
  try {
-  await mongoose.connect( {
+  await mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -146,18 +151,10 @@ const connectDB = async() => {
   console.error(`Not connected to mongoDB database`, error);
  }
 }
+connectDB();
 
-const PORT = 4000 || process.env.PORT;
+const PORT = 5000 || process.env.PORT;
 
-const start = async () => {
-  try {
-    await connectDB(process.env.MONGO_URI);
-    app.listen(PORT, () => {
-      console.log(`server is listening on PORT ${PORT}`);
-    });
-  } catch (error) {
-    console.error("Error starting the server:", error);
-  }
-};
+app.listen(PORT, () => {console.log(`server is listening on PORT ${PORT}`)    });
+  
 
-start();
