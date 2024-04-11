@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 })
 
 //register functionality
-app.post("/api/user/register", async (req, res) => {
+app.post("/api/v1/user/register", async (req, res) => {
   try {
     const { name, email, password } = req.body;
     if (!name || !email || !password) {
@@ -43,7 +43,7 @@ app.post("/api/user/register", async (req, res) => {
 });
 
 // login functionality
-app.post("/api/user/login", async (req, res) => {
+app.post("/api/v1/user/login", async (req, res) => {
   try {
     const { email, password  } = req.body;
     // if and else check  

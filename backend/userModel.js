@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide a name"],
     minlength: 3,
-    maxlength: [30, "Name cannot be more than 30 chracters"],
+    maxlength: [30, "Name cannot be more than 30 characters"],
   },
   email: {
     type: String,
@@ -14,10 +14,9 @@ const userSchema = new mongoose.Schema({
     unique: true,
     validate: [validator.isEmail, "Please enter a valid email addres"],
   },
-  level: {
+  password: {
     type: String,
-    enum: ["100level", "200level", "300level", "400level", "500level"],
-    required: [true, "Please provide a level"],
+    required: [true, "Please provide a password to register"],
   },
 });
 
