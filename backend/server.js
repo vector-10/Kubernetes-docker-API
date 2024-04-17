@@ -1,4 +1,3 @@
-require("dotenv").config();
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -6,6 +5,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require("./userModel");
 const mongoose = require("mongoose");
+require('dotenv').config();
+
 
 app.use(bodyParser.json());
 
@@ -73,7 +74,7 @@ app.post("/api/v1/user/login", async (req, res) => {
 //CONNECT TO MONGODB DATABASE
 const connectDB = async() => {
   try {
-   await mongoose.connect(process.env.MONGO_URI)
+   await mongoose.connect(process.env.MONGODB_URI)
    console.log(`Successfully connected to mongoDB database with host ${mongoose.connection.host}`);
   } catch (error) {
    console.error(`Not connected to mongoDB database`, error);
@@ -84,10 +85,6 @@ const connectDB = async() => {
  const PORT = 4000 || process.env.PORT; 
  app.listen(PORT, () => {console.log(`server is listening on PORT ${PORT}`)});
    
-
-
-
-
 
 
 

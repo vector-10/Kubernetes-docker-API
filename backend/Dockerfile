@@ -9,6 +9,6 @@ RUN npm install
 # Copy application files
 COPY . .
 # expost the application
-EXPOSE 5000
+EXPOSE 4000
 # specify the command to start application
 CMD npm start
