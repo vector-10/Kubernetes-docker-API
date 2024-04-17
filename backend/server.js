@@ -5,10 +5,32 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require("./userModel");
 const mongoose = require("mongoose");
+const cors = requires('cors');
 require('dotenv').config();
 
 
 app.use(bodyParser.json());
+
+//cors policy for front-end access
+const allowedOrigins = "http://localhost:5173";
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(fileUpload());
+
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // Check if the request's origin is in the allowedOrigins array
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+  })
+);
+
 
 //CRUD OPERATIONS FOR PERSON RESOURCE
 app.get("/", (req, res) => {
