@@ -17,23 +17,37 @@ app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "person-app", "dist", "index.html"))
 });
 
-//cors policy for front-end access
-const allowedOrigins = "http://localhost:5173";
+// cors options for all urls
+const corsOptions = {
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  optionsSuccessStatus: 200 
+};
+
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors(corsOptions));
 
 
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      // Check if the request's origin is in the allowedOrigins array
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-  })
-);
+
+
+// //cors policy for front-end access
+// const allowedOrigins = "http://localhost:5173";
+// app.use(bodyParser.urlencoded({ extended: true }));
+
+
+// app.use(
+//   cors({
+//     origin: function (origin, callback) {
+//       // Check if the request's origin is in the allowedOrigins array
+//       if (!origin || allowedOrigins.includes(origin)) {
+//         callback(null, true);
+//       } else {
+//         callback(new Error("Not allowed by CORS"));
+//       }
+//     },
+//   })
+// );
 
 
 //CRUD OPERATIONS FOR PERSON RESOURCE
