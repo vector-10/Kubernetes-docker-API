@@ -23,7 +23,7 @@ const Login = () => {
         event.preventDefault();
     
         try {
-          const response = await axios.post('http://localhost:4000/api/v1/user/login', formData);    
+          const response = await axios.post('https://mern-auth-app.azurewebsites.net/api/v1/user/login', formData);    
           if (response.status === 201) {
             // show success message
             setNotification({message: "User Logged in successfully", type: "success"})            

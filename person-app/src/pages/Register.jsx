@@ -24,7 +24,7 @@ const Register = () => {
   const registerUser = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:4000/api/v1/user/register', formData);
+      const response = await axios.post('https://mern-auth-app.azurewebsites.net/api/v1/user/register', formData);
 
       if (response.status === 201) {
         //show success message

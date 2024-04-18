@@ -5,7 +5,7 @@ Steps for deployment to Azure App Service
 3. Create an App Service plan - Done
 4. Create app service/web app - Done
 5. Create Github Repository - Done
-6. Connect Github to Azure
+6. Connect Github to Azure - Done
 7. Write script for production in server file
 8. change base url to Azure url
 9. Build Client files based on such URls

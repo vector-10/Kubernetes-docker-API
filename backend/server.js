@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const bcrypt = require('bcrypt');
+const path = require('path');
 const jwt = require('jsonwebtoken');
 const User = require("./userModel");
 const mongoose = require("mongoose");
@@ -10,6 +11,11 @@ require('dotenv').config();
 
 
 app.use(bodyParser.json());
+// for production 
+app.use(express.static("./person-app/build"))
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "person-app", "build", "index.html"))
+});
 
 //cors policy for front-end access
 const allowedOrigins = "http://localhost:5173";
