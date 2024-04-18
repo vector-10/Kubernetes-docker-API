@@ -2,6 +2,10 @@ import React, {useState} from 'react';
 import axios from "axios";
 
 const Register = () => {
+  const [notification, setNotification] = useState({
+    message: "",
+    type: ""
+  })
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -19,19 +23,17 @@ const Register = () => {
     //register user function      
   const registerUser = async (event) => {
     event.preventDefault();
-
     try {
       const response = await axios.post('http://localhost:4000/api/v1/user/register', formData);
 
       if (response.status === 201) {
+        //show success message
+        setNotification({ message: "User registered successfully", type: "success"})
         console.log('User registered successfully:', response.data.message);
-        // Redirect or show success message
-      } else {
-        console.error('Registration failed:', response.data.message);
-        // Show error message to the user
       }
-
     } catch (error) {
+       //show error message
+      setNotification({ message: "An error occured, please try again", type: "error"})
       console.error('Error registering user:', error);
     }
   };
@@ -112,6 +114,12 @@ const Register = () => {
             Already Have An Account?
             <a href="/" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"> Click Here to Sign In</a>
             </p>
+            {/* Notifications */}
+              {notification.message && (
+                <div className={`mt-4 ${notification.type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'} px-4 py-2 rounded`}>
+                  {notification.message}
+                </div>
+              )}
         </div>
         </div>
     </div>

@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require("./userModel");
 const mongoose = require("mongoose");
-const cors = requires('cors');
+const cors = require('cors');
 require('dotenv').config();
 
 
@@ -13,9 +13,8 @@ app.use(bodyParser.json());
 
 //cors policy for front-end access
 const allowedOrigins = "http://localhost:5173";
-app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(fileUpload());
+
 
 
 app.use(
