@@ -22,7 +22,6 @@ const allowedOrigins = "http://localhost:5173";
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-
 app.use(
   cors({
     origin: function (origin, callback) {
